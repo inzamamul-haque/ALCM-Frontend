@@ -1,0 +1,59 @@
+<section class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Functional Requirement Information</h3>
+          <h3 (click)="goToFr()" style="display: flex; justify-content: flex-end">Add New FR <mat-icon>add_task</mat-icon></h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>SL.</th>
+              <th>Business Name</th>
+              <th>Functional Name</th>
+              <th>Functional Id</th>
+              <th>Functional Title</th>
+              <th>Description</th>
+              <th>Attachment</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let item of frProject; let i = index">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{item.businessRequirement.name}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.frId}}</td>
+              <td>{{item.frTitle}}</td>
+              <td>{{item.description}}</td>
+              <td>
+                <a *ngIf="item.fileUrl" href="{{item.fileUrl}}" class="btn btn-outline-danger">Download</a>
+              </td>
+              <td>
+                <div>
+                  <button (click)="editProject(item.id)" class="btn btn-outline-warning mr-2">Edit</button>
+                  <button (click)="delete(item.id)" class="btn btn-outline-danger mr-2">Delete</button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->
+
+<flash-messages></flash-messages>
+
+
+

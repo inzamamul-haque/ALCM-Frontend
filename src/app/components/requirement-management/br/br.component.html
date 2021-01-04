@@ -1,0 +1,62 @@
+<section style="margin-top: 3%" class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+
+      </div>
+      <!-- left column -->
+      <div class="col-md-8">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <div class="row  mt-4 ml-2">
+            <div class="col-10">
+              <h1 class="card-title text-bold"><strong>Create Business Requirement</strong></h1>
+            </div>
+            <div class="col-1">
+              <button (click)="goBack()" class="btn btn-warning back-but" type="button">Back</button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+              <label>Choose Project</label>
+              <select [(ngModel)]="project" class="form-control" interface="popover">
+                <option *ngFor="let item of projectList" value="{{item.id}}">{{item.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Business Name</label>
+              <input [(ngModel)]="name" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <label>Business ID</label>
+              <input [(ngModel)]="brId" class="form-control" placeholder="Enter Description"/>
+            </div>
+            <div class="form-group">
+              <label>Business Title</label>
+              <input [(ngModel)]="businessTitle" class="form-control" placeholder="Enter Description"/>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea [(ngModel)]="description" class="form-control" placeholder="Enter Description"> </textarea>
+            </div>
+            <div>
+              <label>File</label>
+              <input (change)="getFileInfo($event)" class="form-control" placeholder="Enter project" type="file">
+            </div>
+          </div>
+
+
+          <div *ngIf="!editProject" class="card-footer">
+            <button (click)="createNewProject()" type="submit" class="btn btn-primary">Submit</button>
+          </div>
+
+          <div *ngIf="editProject" class="card-footer">
+            <button (click)="updateProject()" type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,122 @@
+<section class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-10">
+              <h1>Non-Functional Requirement</h1>
+            </div>
+            <div class="col-2">
+              <button [routerLink]="['/dashboard/create-new-nfr']" class="btn btn-primary add-project-but"
+                      type="button">Add New NFR
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table class="table table-bordered text-center">
+            <thead>
+            <tr>
+              <th scope="col">Project Id</th>
+              <th scope="col">BR Name</th>
+              <th scope="col">Project Title</th>
+              <th scope="col">Project Description</th>
+              <th scope="col">Project Attachment</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of nfrList">
+              <th scope="row">{{ item.nonFrId }}</th>
+              <td>{{ item.businessRequirement }}</td>
+              <td>{{ item.nonFrTitle }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                <a *ngIf="item.fileUrl" class="btn btn-outline-danger" href="{{item.fileUrl}}">Download</a>
+              </td>
+              <td>
+                <button class="btn btn-outline-success mr-2">view</button>
+                <button (click)="open(update_modal, item.id)" class="btn btn-outline-warning mr-2">Edit</button>
+                <button (click)="openDelete(content)" class="btn btn-outline-danger">Delete</button>
+                <ng-template #content let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Are You Sure ?</h4>
+                    <button (click)="modal.dismiss('Cross click')" aria-label="Close" class="close" type="button">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-footer">
+                    <button (click)="deleteNfr(item.id)" class="btn btn-outline-dark" type="button">Yes</button>
+                  </div>
+                </ng-template>
+                <ng-template #update_modal let-modal>
+                  <section class="content" style="margin-top: 3%">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-2">
+
+                        </div>
+                        <!-- left column -->
+                        <div class="col-md-8">
+                          <!-- general form elements -->
+                          <div class="card card-primary">
+                            <div class="row  mt-4 ml-2">
+                              <div class="col-10">
+                                <h1 class="card-title text-bold"><strong>Update NFR</strong></h1>
+                              </div>
+
+                            </div>
+                            <div class="card-body">
+                              <div class="form-group">
+                                <label>Choose BR</label>
+                                <input [(ngModel)]="brUpdate" class="form-control" placeholder="Enter Description"/>
+                              </div>
+                              <div class="form-group">
+                                <label>NFR ID</label>
+                                <input [(ngModel)]="nfrId" class="form-control" placeholder="Enter Description"/>
+                              </div>
+                              <div class="form-group">
+                                <label>NFR Title</label>
+                                <input [(ngModel)]="nfrTitle" class="form-control" placeholder="Enter NFR Title">
+                              </div>
+                              <div class="form-group">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="description" class="form-control"
+                                          placeholder="Enter Description"> </textarea>
+                              </div>
+                              <div>
+                                <label>Attachment</label>
+                                <input (change)="getFileInfoForNrf($event)" [(ngModel)]="fileUrl" class="form-control"
+                                       placeholder="Enter project" type="file">
+                              </div>
+                            </div>
+
+
+                            <div class="card-footer">
+                              <button (click)="UpdateNfr(item.id)" class="btn btn-primary" type="submit">Update Now
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </ng-template>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+
+

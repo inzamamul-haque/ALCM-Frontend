@@ -1,0 +1,55 @@
+<section class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-10">
+              <h1>Projects</h1>
+            </div>
+            <div class="col-2">
+              <button [routerLink]="['/dashboard/create-new-project']" class="btn btn-primary add-project-but"
+                      type="button">Add New Project
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table class="table table-bordered text-center">
+            <thead>
+            <tr>
+              <th scope="col">Project Id</th>
+              <th scope="col">Project Title</th>
+              <th scope="col">Project Description</th>
+              <th scope="col">Project Attachment</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of projectList">
+              <th scope="row">{{ item.id }}</th>
+              <td>{{ item.name }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                <a *ngIf="item.fileUrl" href="{{item.fileUrl}}" class="btn btn-outline-danger">Download</a>
+              </td>
+              <td>
+               <!-- <button class="btn btn-outline-success mr-2">view</button>-->
+                <button (click)="updateProject(item.id)" class="btn btn-outline-warning mr-2">Edit</button>
+                <button (click)="deleteProject(item.id)" class="btn btn-outline-danger">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+
